@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/app_background.dart';
 import 'student_home.dart';
 import 'student_quiz.dart';
 
@@ -12,16 +13,22 @@ class StudentDashboard extends StatefulWidget {
 class _StudentDashboardState extends State<StudentDashboard> {
   int selectedIndex = 0;
 
-  final screens = [
-    const StudentHome(),
-    const StudentQuiz(),
+  final screens = const [
+    StudentHome(),
+    StudentQuiz(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Student Dashboard")),
-      body: screens[selectedIndex],
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        title: const Text("Student Dashboard"),
+        backgroundColor: Colors.black.withOpacity(0.7),
+      ),
+      body: AppBackground(
+        child: screens[selectedIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: (i) => setState(() => selectedIndex = i),
